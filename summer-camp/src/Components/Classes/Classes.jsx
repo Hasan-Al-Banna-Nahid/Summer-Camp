@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import useClasses from "../Hooks/useClasses";
@@ -14,10 +14,34 @@ const Classes = () => {
   const [classes] = useClasses();
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
+
+  const sendDataToBackend = (classItem) => {
+    const data = {
+      sport: classItem.sport,
+      instructor: classItem.instructor,
+      availableSeats: classItem.availableSeats,
+      price: classItem.price,
+    };
+    fetch("http://localhost:5000/classes", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId > 0) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your Class Is Added",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+  };
   const handleSelect = () => {
-    if (user) {
-      navigate("/dashboard/myclasses");
-    } else {
+    if (!user) {
       Swal.fire({
         title: "You Have To Login First?",
         icon: "warning",
@@ -54,7 +78,14 @@ const Classes = () => {
                 <p className="font-bold">Seats : {classItem.availableSeats}</p>
                 <p className="font-bold">Price : ${classItem.price}</p>
                 <div className="card-actions">
-                  <button onClick={handleSelect} className="btn btn-primary">
+                  <button
+                    disabled={classItem.availableSeats === 0}
+                    onClick={() => {
+                      handleSelect();
+                      sendDataToBackend(classItem);
+                    }}
+                    className="btn btn-primary"
+                  >
                     Select
                   </button>
                 </div>
@@ -63,6 +94,7 @@ const Classes = () => {
           );
         })}
       </div>
+
       <Footer />
     </div>
   );
