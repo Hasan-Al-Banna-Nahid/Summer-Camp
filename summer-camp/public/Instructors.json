@@ -1,0 +1,38 @@
+[
+  {
+    "name": "John Doe",
+    "image": "assests/Instructors/cricketer-field-batting-position.jpg",
+    "field": "Cricket Coach",
+    "email": "john.doe@example.com"
+  },
+  {
+    "name": "Jane Smith",
+    "image": "assests/Instructors/front-view-man-with-racket-before-squash-game.jpg",
+    "field": "Tenis Coach",
+    "email": "jane.smith@example.com"
+  },
+  {
+    "name": "Alex Johnson",
+    "image": "assests/Instructors/medium-shot-man-holding-ball.jpg",
+    "field": "FootBall Coach",
+    "email": "alex.johnson@example.com"
+  },
+  {
+    "name": "Sarah Davis",
+    "image": "assests/Instructors/portrait-afro-american-sportsman-basketball-player-sportswear-with-ball-dark-background.jpg",
+    "field": "BasketBall Coach",
+    "email": "sarah.davis@example.com"
+  },
+  {
+    "name": "Michael Brown",
+    "image": "assests/Instructors/swimmer-coach-discussing-by-pool-european-ethnicity-leisure-center.jpg",
+    "field": "Swimming Coach",
+    "email": "michael.brown@example.com"
+  },
+  {
+    "name": "Emily Wilson",
+    "image": "assests/Instructors/young-volleyball-man-player-court.jpg",
+    "field": "VolleyBall Coach",
+    "email": "emily.wilson@example.com"
+  }
+]
