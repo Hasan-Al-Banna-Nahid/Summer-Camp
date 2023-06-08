@@ -1,0 +1,44 @@
+[
+  {
+    "sport": "Cricket",
+    "instructor": "John Doe",
+    "image": "assests/red-ball-hitting-wicket-stumps-with-bat-black-abstract-splash-background-cricket-fever-concept/5492.jpg",
+    "availableSeats": 10,
+    "price": 50
+  },
+  {
+    "sport": "Football",
+    "instructor": "Jane Smith",
+    "image": "assests/male-soccer-football-player-training-action-isolated-gradient-studio-neon-light.jpg",
+    "availableSeats": 15,
+    "price": 40
+  },
+  {
+    "sport": "Basketball",
+    "instructor": "Alex Johnson",
+    "image": "assests/mysterious-nature-african-american-young-basketball-player-red-team-action-neon-lights-dark-studio-background-concept-sport-movement-energy-dynamic-healthy-lifestyle.jpg",
+    "availableSeats": 12,
+    "price": 35
+  },
+  {
+    "sport": "Volleyball",
+    "instructor": "Sarah Davis",
+    "image": "assests/hand-drawn-volleyball-silhouette/7152018.jpg",
+    "availableSeats": 8,
+    "price": 30
+  },
+  {
+    "sport": "Swimming",
+    "instructor": "Michael Brown",
+    "image": "assests/children-swimming-race/21133.jpg",
+    "availableSeats": 20,
+    "price": 60
+  },
+  {
+    "sport": "Tennis",
+    "instructor": "Emily Wilson",
+    "image": "assests/tennis-paddles-balls-arrangement.jpg",
+    "availableSeats": 6,
+    "price": 55
+  }
+]
