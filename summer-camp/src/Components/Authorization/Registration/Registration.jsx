@@ -5,8 +5,14 @@ import { AuthContext } from "../AuthProvider";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 import { FaGoogle } from "react-icons/fa";
+import Header from "../../Header/Header";
+import Footer from "../../Footer/Footer";
 
 const Registration = () => {
+  const [isShow, setIsShow] = useState(false);
+  const handlePasswordShow = () => {
+    setIsShow(!isShow);
+  };
   const {
     register,
     handleSubmit,
@@ -64,6 +70,7 @@ const Registration = () => {
   };
   return (
     <div>
+      <Header />
       <div className="auth">
         <h1 className="text-5xl font-bold text-center">Sign Up now!</h1>
         <form onSubmit={handleSubmit(onSubmit)} className="hero min-h-screen">
@@ -155,6 +162,7 @@ const Registration = () => {
                       Confirm Password
                     </span>
                   </label>
+
                   <span className="text-red-600">{errorMessage}</span>
                   <input
                     type="password"
@@ -186,6 +194,7 @@ const Registration = () => {
           </div>
         </form>
       </div>
+      <Footer />
     </div>
   );
 };
