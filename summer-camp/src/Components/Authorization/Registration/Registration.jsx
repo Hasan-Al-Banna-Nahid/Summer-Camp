@@ -14,28 +14,29 @@ const Registration = () => {
     formState: { errors },
   } = useForm();
 
-  // const location = useLocation();
-  // let from = location.state?.from?.pathname || "/";
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
   const navigate = useNavigate();
-  const { registerWIthEmailAndPassword, updateUser } = useContext(AuthContext);
+  const { registerWIthEmailAndPassword, updateUser, googleLogin } =
+    useContext(AuthContext);
   const [errorMessage, setErrorMessage] = useState("");
   const MySwal = withReactContent(Swal);
 
-  // const handleGoogleLogin = () => {
-  //   googleLogin().then((result) => {
-  //     fetch("http://localhost:5000/users", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         name: result.user.displayName,
-  //         email: result.user.email,
-  //       }),
-  //     });
-  //   });
-  //   navigate(from, { replace: true });
-  // };
+  const handleGoogleLogin = () => {
+    googleLogin().then((result) => {
+      fetch("http://localhost:5000/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: result.user.displayName,
+          email: result.user.email,
+        }),
+      });
+    });
+    navigate(from, { replace: true });
+  };
 
   const onSubmit = (data, e) => {
     const form = e.target;
@@ -170,9 +171,9 @@ const Registration = () => {
                   <button className="btn btn-primary">Sign Up</button>
                 </div>
                 <div className="divider">OR</div>
-                {/* <button onClick={handleGoogleLogin}>
+                <button onClick={handleGoogleLogin}>
                   <FaGoogle className="text-6xl text-center mx-auto hover:text-[#F4B400]" />
-                </button> */}
+                </button>
                 <div className="form-control mt-6">
                   <Link to="/login">
                     {" "}
