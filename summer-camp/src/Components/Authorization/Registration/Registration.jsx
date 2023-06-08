@@ -14,29 +14,28 @@ const Registration = () => {
     formState: { errors },
   } = useForm();
 
-  const location = useLocation();
-  let from = location.state?.from?.pathname || "/";
+  // const location = useLocation();
+  // let from = location.state?.from?.pathname || "/";
   const navigate = useNavigate();
-  const { registerWIthEmailAndPassword, updateUser, googleLogin } =
-    useContext(AuthContext);
+  const { registerWIthEmailAndPassword, updateUser } = useContext(AuthContext);
   const [errorMessage, setErrorMessage] = useState("");
   const MySwal = withReactContent(Swal);
 
-  const handleGoogleLogin = () => {
-    googleLogin().then((result) => {
-      fetch("http://localhost:5000/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: result.user.displayName,
-          email: result.user.email,
-        }),
-      });
-    });
-    navigate(from, { replace: true });
-  };
+  // const handleGoogleLogin = () => {
+  //   googleLogin().then((result) => {
+  //     fetch("http://localhost:5000/users", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         name: result.user.displayName,
+  //         email: result.user.email,
+  //       }),
+  //     });
+  //   });
+  //   navigate(from, { replace: true });
+  // };
 
   const onSubmit = (data, e) => {
     const form = e.target;
@@ -74,9 +73,6 @@ const Registration = () => {
             />
           </div>
           <div className="hero-content flex-col lg:flex-row-reverse">
-            <div className="text-center bg-transparent lg:text-left">
-              <img src="assets/others/authentication2.png" alt="" />
-            </div>
             <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
               <div className="card-body">
                 <div className="form-control">
@@ -174,9 +170,9 @@ const Registration = () => {
                   <button className="btn btn-primary">Sign Up</button>
                 </div>
                 <div className="divider">OR</div>
-                <button onClick={handleGoogleLogin}>
+                {/* <button onClick={handleGoogleLogin}>
                   <FaGoogle className="text-6xl text-center mx-auto hover:text-[#F4B400]" />
-                </button>
+                </button> */}
                 <div className="form-control mt-6">
                   <Link to="/login">
                     {" "}
