@@ -4,6 +4,7 @@ import { Link, Outlet } from "react-router-dom";
 import { FaHome, FaWallet, FaSchool, FaDoorOpen } from "react-icons/fa";
 
 const Dashboard = () => {
+  const isAdmin = true;
   return (
     <div>
       <div className="drawer lg:drawer-open">
@@ -21,37 +22,47 @@ const Dashboard = () => {
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 h-full bg-base-200  text-xl text-base-content">
             {/* Sidebar content here */}
-            <li>
-              <Link to="/dashboard">
-                <FaHome />
-                Student Home
-              </Link>
-            </li>
-            <li>
-              <Link to="myclasses">
-                <FaSchool />
-                My Classes
-              </Link>
-            </li>
-            <li>
-              <Link>
-                <FaDoorOpen />
-                My Enrolled Classes
-              </Link>
-            </li>
-            <li>
-              <Link>
-                <FaWallet />
-                Payment
-              </Link>
-            </li>
-            <div className="divider"></div>
-            <li>
-              <Link to="/">
-                <FaHome />
-                Home
-              </Link>
-            </li>
+            {isAdmin ? (
+              <>
+                <li>
+                  <Link to="allUsers">All Users</Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link to="/dashboard">
+                    <FaHome />
+                    Student Home
+                  </Link>
+                </li>
+                <li>
+                  <Link to="myclasses">
+                    <FaSchool />
+                    My Classes
+                  </Link>
+                </li>
+                <li>
+                  <Link>
+                    <FaDoorOpen />
+                    My Enrolled Classes
+                  </Link>
+                </li>
+                <li>
+                  <Link>
+                    <FaWallet />
+                    Payment
+                  </Link>
+                </li>
+                <div className="divider"></div>
+                <li>
+                  <Link to="/">
+                    <FaHome />
+                    Home
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>
