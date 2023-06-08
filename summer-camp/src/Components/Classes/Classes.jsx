@@ -29,15 +29,13 @@ const Classes = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.insertedId > 0) {
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Your Class Is Added",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your Class Is Added",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       });
   };
   const handleSelect = () => {
