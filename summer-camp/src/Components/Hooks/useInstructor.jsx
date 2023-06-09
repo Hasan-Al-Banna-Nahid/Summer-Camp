@@ -8,7 +8,7 @@ import { AuthContext } from "../Authorization/AuthProvider";
 const useInstructor = () => {
   const { user } = useContext(AuthContext);
   const [axiosSecure] = useAxiosSecure();
-  const { data: isInstructor, isLoading: isInstructorLoading } = useQuery({
+  const { data: isInstructor = {}, isLoading: isInstructorLoading } = useQuery({
     queryKey: ["isInstructor", user?.email],
     queryFn: async () => {
       if (user?.email) {

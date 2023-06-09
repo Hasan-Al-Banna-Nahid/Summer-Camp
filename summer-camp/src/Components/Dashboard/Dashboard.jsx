@@ -4,13 +4,12 @@ import { Link, Outlet } from "react-router-dom";
 import { FaHome, FaWallet, FaSchool, FaDoorOpen } from "react-icons/fa";
 import useAdmin from "../Hooks/useAdmin";
 import useInstructor from "../Hooks/useInstructor";
-import { AuthContext } from "../Authorization/AuthProvider";
-import axios from "axios";
 
 const Dashboard = () => {
   const [isAdmin] = useAdmin();
   const [isInstructor] = useInstructor();
   console.log(isInstructor);
+  console.log(isAdmin);
 
   return (
     <div>
@@ -30,7 +29,85 @@ const Dashboard = () => {
           <ul className="menu p-4 w-80 h-full bg-base-200  text-xl text-base-content">
             {/* Sidebar content here */}
 
-            {isInstructor ? (
+            {isAdmin?.admin === true && (
+              <div>
+                <li>
+                  <Link to="/dashboard">
+                    <FaHome />
+                    Admin Home
+                  </Link>
+                </li>
+                <li>
+                  <Link to="allUsers">All Users</Link>
+                </li>
+                <div className="divider"></div>
+                <li>
+                  <Link to="/">
+                    <FaHome />
+                    Home
+                  </Link>
+                </li>
+              </div>
+            )}
+
+            {isInstructor?.instructor === true && (
+              <div>
+                <li>
+                  <Link to="/dashboard">
+                    <FaHome />
+                    Instructor Home
+                  </Link>
+                </li>
+                <li>
+                  <Link to="addClass">Add Class</Link>
+                </li>
+                <div className="divider"></div>
+                <li>
+                  <Link to="/">
+                    <FaHome />
+                    Home
+                  </Link>
+                </li>
+              </div>
+            )}
+
+            {isAdmin?.admin === false && isInstructor?.instructor === false && (
+              <div>
+                <li>
+                  <Link to="/dashboard">
+                    <FaHome />
+                    Student Home
+                  </Link>
+                </li>
+                <li>
+                  <Link to="myclasses">
+                    <FaSchool />
+                    My Classes
+                  </Link>
+                </li>
+                <li>
+                  <Link>
+                    <FaDoorOpen />
+                    My Enrolled Classes
+                  </Link>
+                </li>
+                <li>
+                  <Link>
+                    <FaWallet />
+                    Payment
+                  </Link>
+                </li>
+                <div className="divider"></div>
+                <li>
+                  <Link to="/">
+                    <FaHome />
+                    Home
+                  </Link>
+                </li>
+              </div>
+            )}
+
+            {/* {isInstructor ? (
               <>
                 <li>
                   <Link to="/dashboard">
@@ -39,7 +116,7 @@ const Dashboard = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link>Add Class</Link>
+                  <Link to="addClass">Add Class</Link>
                 </li>
                 <div className="divider"></div>
                 <li>
@@ -102,7 +179,7 @@ const Dashboard = () => {
                   </Link>
                 </li>
               </>
-            )}
+            )} */}
           </ul>
         </div>
       </div>
