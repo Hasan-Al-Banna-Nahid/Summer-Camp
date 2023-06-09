@@ -12,9 +12,10 @@ const AddClass = () => {
     const image = form.image.value;
     const instructor = form.instructor.value;
     const email = form.email.value;
+    const status = form.status.value;
     const seats = parseInt(form.seats.value);
     const price = parseInt(form.price.value);
-    const data = { name, image, instructor, email, seats, price };
+    const data = { name, image, instructor, email, seats, price, status };
     fetch("http://localhost:5000/instructorsClasses", {
       method: "POST",
       headers: { "Content-type": "application/json" },
@@ -22,6 +23,7 @@ const AddClass = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        form.reset();
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -58,7 +60,7 @@ const AddClass = () => {
             <input
               type="text"
               name="instructor"
-              value={user.displayName}
+              value={user?.displayName}
               readOnly
               className="input input-bordered w-full max-w-xs"
             />
@@ -69,7 +71,7 @@ const AddClass = () => {
               type="text"
               name="email"
               readOnly
-              value={user.email}
+              value={user?.email}
               placeholder="Type here"
               className="input input-bordered w-full max-w-xs"
             />
@@ -89,6 +91,16 @@ const AddClass = () => {
               type="number"
               name="price"
               placeholder="Type here"
+              className="input input-bordered w-full max-w-xs"
+            />
+          </div>
+          <div>
+            <h2 className="text-2xl">Status</h2>
+            <input
+              type="text"
+              name="status"
+              readOnly
+              value={"Pending"}
               className="input input-bordered w-full max-w-xs"
             />
           </div>
