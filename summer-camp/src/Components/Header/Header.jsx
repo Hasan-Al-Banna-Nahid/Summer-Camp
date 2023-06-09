@@ -70,10 +70,19 @@ const Header = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          {user ? (
-            <button onClick={handleLogOut} className="btn btn-success">
-              LogOut
-            </button>
+          {user && user ? (
+            <div className="flex">
+              <div>
+                {" "}
+                <h3>{user.displayName}</h3>
+                <img src={user.photoURL} alt="" className="rounded-full" />
+              </div>
+              <div>
+                <button onClick={handleLogOut} className="btn btn-success">
+                  LogOut
+                </button>
+              </div>
+            </div>
           ) : (
             <Link to="/signUp">
               {" "}

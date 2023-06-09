@@ -1,11 +1,17 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { FaHome, FaWallet, FaSchool, FaDoorOpen } from "react-icons/fa";
 import useAdmin from "../Hooks/useAdmin";
+import useInstructor from "../Hooks/useInstructor";
+import { AuthContext } from "../Authorization/AuthProvider";
+import axios from "axios";
 
 const Dashboard = () => {
   const [isAdmin] = useAdmin();
+  console.log(isAdmin);
+  const [isInstructor] = useInstructor();
+
   return (
     <div>
       <div className="drawer lg:drawer-open">
@@ -26,7 +32,32 @@ const Dashboard = () => {
             {isAdmin ? (
               <>
                 <li>
+                  <Link to="/dashboard">
+                    <FaHome />
+                    Admin Home
+                  </Link>
+                </li>
+                <li>
                   <Link to="allUsers">All Users</Link>
+                </li>
+                <div className="divider"></div>
+                <li>
+                  <Link to="/">
+                    <FaHome />
+                    Home
+                  </Link>
+                </li>
+              </>
+            ) : isInstructor ? (
+              <>
+                <li>
+                  <Link to="/dashboard">
+                    <FaHome />
+                    Instructor Home
+                  </Link>
+                </li>
+                <li>
+                  <Link>Add Class</Link>
                 </li>
                 <div className="divider"></div>
                 <li>

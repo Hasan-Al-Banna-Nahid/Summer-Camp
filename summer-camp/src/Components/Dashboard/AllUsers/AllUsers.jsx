@@ -1,9 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext, useEffect, useState } from "react";
-import { FaUserShield } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Authorization/AuthProvider";
-import { useQuery } from "@tanstack/react-query";
 
 const AllUsers = () => {
   const [users, setUsers] = useState([]);
@@ -29,7 +27,7 @@ const AllUsers = () => {
     fetch(`http://localhost:5000/users/admin/${user._id}`, { method: "PATCH" })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         Swal.fire({
           position: "top-end",
           icon: "success",
