@@ -1,7 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext, useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import { FaHome, FaWallet, FaSchool, FaDoorOpen } from "react-icons/fa";
+import {
+  FaHome,
+  FaWallet,
+  FaSchool,
+  FaDoorOpen,
+  FaUsers,
+} from "react-icons/fa";
 import useAdmin from "../Hooks/useAdmin";
 import useInstructor from "../Hooks/useInstructor";
 import { FaBars, FaUserShield } from "react-icons/fa";
@@ -39,7 +45,16 @@ const Dashboard = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to="allUsers">All Users</Link>
+                  <Link to="allUsers">
+                    <FaUsers />
+                    All Users
+                  </Link>
+                </li>
+                <li>
+                  <Link to="manageClasses">
+                    <FaBars />
+                    Manage Classes
+                  </Link>
                 </li>
                 <div className="divider"></div>
                 <li>
