@@ -4,6 +4,38 @@ import Swal from "sweetalert2";
 
 const ManageClass = () => {
   const [myClass, setMyClass] = useState([]);
+  const [selectedModalId, setSelectedModalId] = useState(null);
+
+  const openModal = (id) => {
+    setSelectedModalId(id);
+  };
+
+  const closeModal = () => {
+    setSelectedModalId(null);
+  };
+
+  const handleFeedBack = (e, id) => {
+    e.preventDefault();
+    const form = e.target;
+    const feedback = form.feedback.value;
+    console.log(id);
+    fetch(`http://localhost:5000/instructorsClasses/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(feedback),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        form.reset();
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Admin Has Sent A FeedBack",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        closeModal();
+      });
+  };
   const handleDeny = (id) => {
     fetch(`http://localhost:5000/instructorsClasses/${id}`, { method: "PATCH" })
       .then((res) => res.json())
@@ -40,7 +72,7 @@ const ManageClass = () => {
       <div>
         <div>
           <div className="overflow-x-auto">
-            <table className="table">
+            <table className="table p-6">
               {/* head */}
               <thead>
                 <tr>
@@ -50,6 +82,7 @@ const ManageClass = () => {
                     </label>
                   </th>
                   <th className="text-[20px]">Image</th>
+                  <th className="text-[20px]">Class Name</th>
                   <th className="text-[20px]">Instructor</th>
                   <th className="text-[20px]">Instructor Email</th>
                   <th className="text-[20px]">Seats</th>
@@ -61,11 +94,11 @@ const ManageClass = () => {
               <tbody>
                 {myClass.map((myClass, index) => {
                   return (
-                    <tr key={myClass._id}>
+                    <tr key={myClass._id} className="border-4 p-3">
                       <th className="text-[20px]">
                         <label>{index + 1}</label>
                       </th>
-                      <td className="text-[20px]">
+                      <td className="text-[20px] border-2">
                         <div className="flex items-center space-x-3">
                           <div className="avatar">
                             <div className="mask mask-squircle w-12 h-12">
@@ -77,19 +110,24 @@ const ManageClass = () => {
                           </div>
                         </div>
                       </td>
-
+                      <td className="text-[20px] border-2">{myClass.name}</td>
                       <td className="text-[20px]">{myClass.instructor}</td>
-                      <td className="text-[20px]">{myClass.email}</td>
-                      <td className="text-[20px]">{myClass.seats}</td>
-                      <td className="text-[20px]">{myClass.price}</td>
+                      <td className="text-[20px] border-2">{myClass.email}</td>
+                      <td className="text-[20px] border-2">{myClass.seats}</td>
+                      <td className="text-[20px] border-2">{myClass.price}</td>
                       <td className="badge badge-secondary badge-outline">
                         {myClass.status}
                       </td>
-                      <th>
-                        <button className="btn btn-ghost btn-xs">Update</button>
+                      <th className="border-2">
+                        <button
+                          onClick={() => openModal(myClass._id)}
+                          className="btn btn-ghost btn-xs"
+                        >
+                          Feedback
+                        </button>
                         <button
                           onClick={() => handleApproved(myClass._id)}
-                          className="btn btn-secondary btn-xs mx-2"
+                          className="btn btn-secondary btn-xs my-3"
                           disabled={
                             myClass.status === "approved" ||
                             myClass.status === "denied"
@@ -116,6 +154,57 @@ const ManageClass = () => {
           </div>
         </div>
       </div>
+      {/* Modal */}
+
+      <input
+        type="checkbox"
+        id={`my-modal-${selectedModalId}`}
+        className="modal-toggle"
+        checked={selectedModalId !== null}
+      />
+      {selectedModalId !== null && (
+        <>
+          <div className="modal">
+            <div className="modal-box relative">
+              <label
+                htmlFor={`my-modal-${selectedModalId}`}
+                className="btn btn-sm btn-circle absolute right-2 top-2"
+                onClick={closeModal}
+              >
+                ✕
+              </label>
+              <form
+                onSubmit={(e) => handleFeedBack(e, selectedModalId)}
+                className="hero min-h-screen bg-base-200"
+              >
+                <div className="hero-content flex-col lg:flex-row-reverse">
+                  <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                    <div className="card-body">
+                      <div className="form-control">
+                        <label className="label">
+                          <span className="label-text  font-bold">
+                            Tell Why You Approved or Deny the Class{" "}
+                          </span>
+                        </label>
+                        <textarea
+                          type="text"
+                          placeholder="Feedback"
+                          className="input input-bordered"
+                          name="feedback"
+                        />
+                      </div>
+                      <button className="w-full btn btn-outline btn-secondary">
+                        Send
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </>
+      )}
+      {/* You can open the modal using ID.showModal() method */}
     </div>
   );
 };

@@ -74,7 +74,6 @@ const Header = () => {
             <div className="flex">
               <div>
                 {" "}
-                <h3>{user.displayName}</h3>
                 <img src={user.photoURL} alt="" className="rounded-full" />
               </div>
               <div>

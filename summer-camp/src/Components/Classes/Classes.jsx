@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import useClasses from "../Hooks/useClasses";
@@ -11,10 +11,16 @@ import withReactContent from "sweetalert2-react-content";
 const MySwal = withReactContent(Swal);
 
 const Classes = () => {
-  const [classes] = useClasses();
+  // const [classes] = useClasses();
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
 
+  const [classes, setClasses] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:5000/instructorsClasses")
+      .then((res) => res.json())
+      .then((data) => setClasses(datas));
+  }, []);
   const sendDataToBackend = (classItem) => {
     const data = {
       sport: classItem.sport,
@@ -69,11 +75,11 @@ const Classes = () => {
                 <img src={classItem.image} alt="Shoes" className="rounded-xl" />
               </figure>
               <div className="card-body items-center text-center">
-                <h2 className="card-title">Sport : {classItem.sport}</h2>
+                <h2 className="card-title">Sport : {classItem.name}</h2>
                 <h2 className="card-title">
                   Instructor : {classItem.instructor}
                 </h2>
-                <p className="font-bold">Seats : {classItem.availableSeats}</p>
+                <p className="font-bold">Seats : {classItem.seats}</p>
                 <p className="font-bold">Price : ${classItem.price}</p>
                 <div className="card-actions">
                   <button

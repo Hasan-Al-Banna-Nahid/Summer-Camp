@@ -13,9 +13,21 @@ const AddClass = () => {
     const instructor = form.instructor.value;
     const email = form.email.value;
     const status = form.status.value;
+    const feedback = form.feedback.value;
     const seats = parseInt(form.seats.value);
     const price = parseInt(form.price.value);
-    const data = { name, image, instructor, email, seats, price, status };
+    const enrolled = parseInt(form.enrolled.value);
+    const data = {
+      name,
+      image,
+      instructor,
+      email,
+      seats,
+      price,
+      status,
+      feedback,
+      enrolled,
+    };
     fetch("http://localhost:5000/instructorsClasses", {
       method: "POST",
       headers: { "Content-type": "application/json" },
@@ -101,6 +113,26 @@ const AddClass = () => {
               name="status"
               readOnly
               value={"Pending"}
+              className="input input-bordered w-full max-w-xs"
+            />
+          </div>
+          <div>
+            <h2 className="text-2xl">Feedback</h2>
+            <input
+              type="text"
+              name="feedback"
+              readOnly
+              value={""}
+              className="input input-bordered w-full max-w-xs"
+            />
+          </div>
+          <div>
+            <h2 className="text-2xl">Total Enrolled Students</h2>
+            <input
+              type="number"
+              name="enrolled"
+              readOnly
+              value={""}
               className="input input-bordered w-full max-w-xs"
             />
           </div>

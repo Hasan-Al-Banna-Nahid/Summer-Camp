@@ -21,6 +21,7 @@ const MyClass = () => {
                   </label>
                 </th>
                 <th className="text-[20px]">Image</th>
+                <th className="text-[20px]">Class Name</th>
                 <th className="text-[20px]">Instructor</th>
                 <th className="text-[20px]">Instructor Email</th>
                 <th className="text-[20px]">Seats</th>
@@ -48,7 +49,7 @@ const MyClass = () => {
                         </div>
                       </div>
                     </td>
-
+                    <td className="text-[20px]">{myClass.name}</td>
                     <td className="text-[20px]">{myClass.instructor}</td>
                     <td className="text-[20px]">{myClass.email}</td>
                     <td className="text-[20px]">{myClass.seats}</td>
