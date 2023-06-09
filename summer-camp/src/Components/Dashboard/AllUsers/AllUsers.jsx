@@ -9,6 +9,22 @@ const AllUsers = () => {
   const [users, setUsers] = useState([]);
   const { user } = useContext(AuthContext);
 
+  const handleInstructor = (user) => {
+    fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+      method: "PATCH",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `${user.name} is Instructor Now`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
+  };
   const handleAdmin = (user) => {
     fetch(`http://localhost:5000/users/admin/${user._id}`, { method: "PATCH" })
       .then((res) => res.json())
@@ -53,13 +69,27 @@ const AllUsers = () => {
                   <td className="text-2xl">{user.name}</td>
                   <td className="text-2xl">{user.role}</td>
                   <td className="text-2xl">
-                    <button
-                      disabled={user.role === "admin"}
-                      onClick={() => handleAdmin(user)}
-                    >
-                      {" "}
-                      <FaUserShield />
-                    </button>
+                    <div className="flex gap-4">
+                      <div>
+                        <button
+                          className="btn btn-outline btn-secondary"
+                          disabled={user.role === "instructor"}
+                          onClick={() => handleInstructor(user)}
+                        >
+                          Make Instructor
+                        </button>
+                      </div>
+                      <div>
+                        <button
+                          disabled={user.role === "admin"}
+                          onClick={() => handleAdmin(user)}
+                          className="btn btn-outline btn-primary"
+                        >
+                          {" "}
+                          Make Admin
+                        </button>
+                      </div>
+                    </div>
                   </td>
                 </tr>
               );
