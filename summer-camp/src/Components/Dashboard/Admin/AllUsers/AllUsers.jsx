@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import { AuthContext } from "../../Authorization/AuthProvider";
+import { AuthContext } from "../../../Authorization/AuthProvider";
 
 const AllUsers = () => {
   const [users, setUsers] = useState([]);

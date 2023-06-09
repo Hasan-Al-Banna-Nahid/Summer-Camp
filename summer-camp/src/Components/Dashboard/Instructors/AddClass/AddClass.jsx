@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext } from "react";
-import { AuthContext } from "../../Authorization/AuthProvider";
+import { AuthContext } from "../../../Authorization/AuthProvider";
 import Swal from "sweetalert2";
 
 const AddClass = () => {

@@ -4,6 +4,7 @@ import { Link, Outlet } from "react-router-dom";
 import { FaHome, FaWallet, FaSchool, FaDoorOpen } from "react-icons/fa";
 import useAdmin from "../Hooks/useAdmin";
 import useInstructor from "../Hooks/useInstructor";
+import { FaBars, FaUserShield } from "react-icons/fa";
 
 const Dashboard = () => {
   const [isAdmin] = useAdmin();
@@ -59,7 +60,15 @@ const Dashboard = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to="addClass">Add Class</Link>
+                  <Link to="addClass">
+                    <FaBars />
+                    Add Class
+                  </Link>
+                </li>
+                <li>
+                  <Link to="myClass">
+                    <FaUserShield /> My Class
+                  </Link>
                 </li>
                 <div className="divider"></div>
                 <li>

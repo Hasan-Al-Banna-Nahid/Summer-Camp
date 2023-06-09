@@ -6,9 +6,10 @@ import Login from "../../Authorization/Login/Login";
 import Instructors from "../../Instructors/Instructors";
 import Classes from "../../Classes/Classes";
 import Dashboard from "../../Dashboard/Dashboard";
-import MyClasses from "../../Dashboard/MyClasses/MyClasses";
-import AllUsers from "../../Dashboard/AllUsers/AllUsers";
-import AddClass from "../../Dashboard/AddClass/AddClass";
+import MyClasses from "../../Dashboard/Student/MyClasses/MyClasses";
+import AllUsers from "../../Dashboard/Admin/AllUsers/AllUsers";
+import AddClass from "../../Dashboard/Instructors/AddClass/AddClass";
+import MyClass from "../../Dashboard/Instructors/MyClass/MyClass";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "addClass",
         element: <AddClass />,
+      },
+      {
+        path: "myClass",
+        element: <MyClass />,
       },
     ],
   },

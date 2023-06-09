@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { FaTrash, FaWallet } from "react-icons/fa";
 import Swal from "sweetalert2";
-import useUser from "../../Hooks/useUser";
+import useUser from "../../../Hooks/useUser";
 
 const MyClasses = () => {
   const [refetch] = useUser();
