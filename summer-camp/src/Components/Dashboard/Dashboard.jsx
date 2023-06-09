@@ -9,8 +9,8 @@ import axios from "axios";
 
 const Dashboard = () => {
   const [isAdmin] = useAdmin();
-  console.log(isAdmin);
   const [isInstructor] = useInstructor();
+  console.log(isInstructor);
 
   return (
     <div>
@@ -29,26 +29,8 @@ const Dashboard = () => {
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 h-full bg-base-200  text-xl text-base-content">
             {/* Sidebar content here */}
-            {isAdmin ? (
-              <>
-                <li>
-                  <Link to="/dashboard">
-                    <FaHome />
-                    Admin Home
-                  </Link>
-                </li>
-                <li>
-                  <Link to="allUsers">All Users</Link>
-                </li>
-                <div className="divider"></div>
-                <li>
-                  <Link to="/">
-                    <FaHome />
-                    Home
-                  </Link>
-                </li>
-              </>
-            ) : isInstructor ? (
+
+            {isInstructor ? (
               <>
                 <li>
                   <Link to="/dashboard">
@@ -58,6 +40,25 @@ const Dashboard = () => {
                 </li>
                 <li>
                   <Link>Add Class</Link>
+                </li>
+                <div className="divider"></div>
+                <li>
+                  <Link to="/">
+                    <FaHome />
+                    Home
+                  </Link>
+                </li>
+              </>
+            ) : isAdmin ? (
+              <>
+                <li>
+                  <Link to="/dashboard">
+                    <FaHome />
+                    Admin Home
+                  </Link>
+                </li>
+                <li>
+                  <Link to="allUsers">All Users</Link>
                 </li>
                 <div className="divider"></div>
                 <li>
