@@ -33,10 +33,10 @@ const MyClass = () => {
               {myClass.map((myClass, index) => {
                 return (
                   <tr key={myClass._id}>
-                    <th>
+                    <th className="text-[20px]">
                       <label>{index + 1}</label>
                     </th>
-                    <td>
+                    <td className="text-[20px]">
                       <div className="flex items-center space-x-3">
                         <div className="avatar">
                           <div className="mask mask-squircle w-12 h-12">
@@ -49,10 +49,10 @@ const MyClass = () => {
                       </div>
                     </td>
 
-                    <td>{myClass.instructor}</td>
-                    <td>{myClass.email}</td>
-                    <td>{myClass.seats}</td>
-                    <td>{myClass.price}</td>
+                    <td className="text-[20px]">{myClass.instructor}</td>
+                    <td className="text-[20px]">{myClass.email}</td>
+                    <td className="text-[20px]">{myClass.seats}</td>
+                    <td className="text-[20px]">{myClass.price}</td>
                     <td className="badge badge-secondary badge-outline">
                       {myClass.status}
                     </td>

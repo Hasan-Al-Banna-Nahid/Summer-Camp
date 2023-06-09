@@ -1,8 +1,22 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 const ManageClass = () => {
   const [myClass, setMyClass] = useState([]);
+  const handleUpdate = (id) => {
+    fetch(`http://localhost:5000/instructorsClasses/${id}`, { method: "PATCH" })
+      .then((res) => res.json())
+      .then((data) => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Admin Has Approved",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
+  };
   useEffect(() => {
     fetch("http://localhost:5000/instructorsClasses")
       .then((res) => res.json())
@@ -59,11 +73,16 @@ const ManageClass = () => {
                         {myClass.status}
                       </td>
                       <th>
-                        <button className="btn btn-ghost btn-xs">Update</button>
-                        <button className="btn btn-ghost btn-xs">
+                        <button
+                          onClick={() => handleUpdate(myClass._id)}
+                          className="btn btn-ghost btn-xs"
+                        >
+                          Update
+                        </button>
+                        <button className="btn btn-secondary btn-xs mx-2">
                           Approve
                         </button>
-                        <button className="btn btn-ghost btn-xs">Deny</button>
+                        <button className="btn btn-info btn-xs">Deny</button>
                       </th>
                     </tr>
                   );
