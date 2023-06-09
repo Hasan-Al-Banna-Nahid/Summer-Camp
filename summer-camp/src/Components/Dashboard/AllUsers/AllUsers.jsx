@@ -3,10 +3,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { FaUserShield } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Authorization/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
 
 const AllUsers = () => {
   const [users, setUsers] = useState([]);
   const { user } = useContext(AuthContext);
+
   const handleAdmin = (user) => {
     fetch(`http://localhost:5000/users/admin/${user._id}`, { method: "PATCH" })
       .then((res) => res.json())
@@ -25,7 +27,10 @@ const AllUsers = () => {
   useEffect(() => {
     fetch("http://localhost:5000/users")
       .then((res) => res.json())
-      .then((data) => setUsers(data));
+      .then((data) => {
+        console.log(data);
+        setUsers(data);
+      });
   }, []);
   return (
     <div>

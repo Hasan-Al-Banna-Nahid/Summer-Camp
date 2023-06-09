@@ -1,20 +1,23 @@
 // eslint-disable-next-line no-unused-vars
-import React from "react";
-import useAuth from "./useAuth";
+import React, { useContext } from "react";
 import useAxiosSecure from "./useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import { AuthContext } from "../Authorization/AuthProvider";
 
 const useAdmin = () => {
-  const { user } = useAuth();
+  const { user } = useContext(AuthContext);
   const [axiosSecure] = useAxiosSecure();
-  const { data: isAdmin } = useQuery({
+  const { data: isAdmin, isLoading: isAdminLoading } = useQuery({
     queryKey: ["isAdmin", user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/users/admin/${user?.email}`);
-      return res.data.admin;
+      if (user?.email) {
+        const res = await axiosSecure.get(`/users/admin/${user?.email}`);
+        return res.data;
+      }
+      return false;
     },
   });
-  return [isAdmin];
+  return [isAdmin, isAdminLoading];
 };
 
 export default useAdmin;

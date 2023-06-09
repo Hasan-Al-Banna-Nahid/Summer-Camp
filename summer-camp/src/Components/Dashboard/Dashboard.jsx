@@ -2,9 +2,10 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import { FaHome, FaWallet, FaSchool, FaDoorOpen } from "react-icons/fa";
+import useAdmin from "../Hooks/useAdmin";
 
 const Dashboard = () => {
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
   return (
     <div>
       <div className="drawer lg:drawer-open">
@@ -26,6 +27,13 @@ const Dashboard = () => {
               <>
                 <li>
                   <Link to="allUsers">All Users</Link>
+                </li>
+                <div className="divider"></div>
+                <li>
+                  <Link to="/">
+                    <FaHome />
+                    Home
+                  </Link>
                 </li>
               </>
             ) : (
