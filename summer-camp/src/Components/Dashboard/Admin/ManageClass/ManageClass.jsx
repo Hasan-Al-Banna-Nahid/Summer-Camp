@@ -4,14 +4,27 @@ import Swal from "sweetalert2";
 
 const ManageClass = () => {
   const [myClass, setMyClass] = useState([]);
-  const handleUpdate = (id) => {
+  const handleDeny = (id) => {
     fetch(`http://localhost:5000/instructorsClasses/${id}`, { method: "PATCH" })
       .then((res) => res.json())
       .then((data) => {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "Admin Has Approved",
+          title: "Admin Has Denied This Class",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
+  };
+  const handleApproved = (id) => {
+    fetch(`http://localhost:5000/instructorsClasses/${id}`, { method: "PATCH" })
+      .then((res) => res.json())
+      .then((data) => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Admin Has Approved This Class",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -73,16 +86,27 @@ const ManageClass = () => {
                         {myClass.status}
                       </td>
                       <th>
+                        <button className="btn btn-ghost btn-xs">Update</button>
                         <button
-                          onClick={() => handleUpdate(myClass._id)}
-                          className="btn btn-ghost btn-xs"
+                          onClick={() => handleApproved(myClass._id)}
+                          className="btn btn-secondary btn-xs mx-2"
+                          disabled={
+                            myClass.status === "approved" ||
+                            myClass.status === "denied"
+                          }
                         >
-                          Update
-                        </button>
-                        <button className="btn btn-secondary btn-xs mx-2">
                           Approve
                         </button>
-                        <button className="btn btn-info btn-xs">Deny</button>
+                        <button
+                          onClick={() => handleDeny(myClass._id)}
+                          disabled={
+                            myClass.status === "approved" ||
+                            myClass.status === "denied"
+                          }
+                          className="btn btn-info btn-xs"
+                        >
+                          Deny
+                        </button>
                       </th>
                     </tr>
                   );
