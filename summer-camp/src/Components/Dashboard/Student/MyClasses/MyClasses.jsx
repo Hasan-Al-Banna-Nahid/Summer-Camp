@@ -1,17 +1,22 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaTrash, FaWallet } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useUser from "../../../Hooks/useUser";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Authorization/AuthProvider";
 
 const MyClasses = () => {
-  const [refetch] = useUser();
   const [classes, setClasses] = useState([]);
+  const { user } = useContext(AuthContext);
+  console.log(classes);
+  const price = classes.reduce((acc, obj) => obj.price + acc, 0);
+
   useEffect(() => {
-    fetch("http://localhost:5000/classes")
+    fetch(`http://localhost:5000/classes?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => setClasses(data));
-  }, []);
+  }, [user.email]);
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -26,7 +31,9 @@ const MyClasses = () => {
         fetch(`http://localhost:5000/classes/${id}`, { method: "DELETE" })
           .then((res) => res.json())
           .then((data) => {
-            refetch();
+            const remaining = classes.filter((myClass) => myClass.id !== id);
+            setClasses(remaining);
+
             Swal.fire("Deleted!", "Your file has been deleted.", "success");
           });
       }
@@ -35,6 +42,16 @@ const MyClasses = () => {
   return (
     <div>
       <h2 className="text-center text-2xl my-6">My Classes</h2>
+      <div className="flex justify-between">
+        <div>
+          <h2 className="text-2xl text-slate-900">
+            Total Class : {classes.length}
+          </h2>
+        </div>
+        <div>
+          <h2 className="text-2xl text-slate-900">Price : ${price}</h2>
+        </div>
+      </div>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
@@ -45,44 +62,45 @@ const MyClasses = () => {
               <th className="text-xl">Instructor</th>
               <th className="text-xl">Available Seats</th>
               <th className="text-xl">Price</th>
-              <th className="text-xl"></th>
+              <th className="text-xl">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {classes.map((classItem, index) => {
-              return (
-                <tr key={classItem._id}>
-                  <th className="text-lg text-center">{index + 1}</th>
-                  <td className="text-lg text-center">{classItem.sport}</td>
-                  <td className="text-lg text-center">
-                    {classItem.instructor}
-                  </td>
-                  <td className="text-lg text-center">
-                    {classItem.availableSeats}
-                  </td>
-                  <td className="text-lg text-center">{classItem.price}</td>
-                  <td>
-                    <div className="flex gap-6">
-                      <div>
-                        {" "}
-                        <button>
-                          <FaWallet className="text-2xl text-slate-800" />
-                        </button>{" "}
-                      </div>
-                      <div>
-                        <button>
+            {classes &&
+              classes.map((classItem, index) => {
+                return (
+                  <tr key={classItem._id}>
+                    <th className="text-lg text-center">{index + 1}</th>
+                    <td className="text-lg text-center">{classItem.sport}</td>
+                    <td className="text-lg text-center">
+                      {classItem.instructor}
+                    </td>
+                    <td className="text-lg text-center">
+                      {classItem.availableSeats}
+                    </td>
+                    <td className="text-lg text-center">{classItem?.price}</td>
+                    <td>
+                      <div className="flex gap-6">
+                        <div>
                           {" "}
-                          <FaTrash
-                            onClick={() => handleDelete(classItem._id)}
-                            className="text-2xl text-red-600"
-                          />
-                        </button>
+                          <button className=" text-slate-800 btn btn-outline btn-info">
+                            <Link to="/dashboard/payment"> Pay</Link>
+                          </button>{" "}
+                        </div>
+                        <div>
+                          <button>
+                            {" "}
+                            <FaTrash
+                              onClick={() => handleDelete(classItem._id)}
+                              className="text-4xl text-red-600"
+                            />
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                  </td>
-                </tr>
-              );
-            })}
+                    </td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>

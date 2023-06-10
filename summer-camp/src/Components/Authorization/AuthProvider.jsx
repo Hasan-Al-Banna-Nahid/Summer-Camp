@@ -43,11 +43,12 @@ const AuthProvider = ({ children }) => {
           .post("http://localhost:5000/jwt", { email: currentUser.email })
           .then((res) => {
             localStorage.setItem("access-token", res.data.token);
+            setIsLoading(false);
           });
       } else {
         localStorage.removeItem("access-token");
+        setIsLoading(false);
       }
-      setIsLoading(false);
     });
     return () => {
       return unsubscribe();

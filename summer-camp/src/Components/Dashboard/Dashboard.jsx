@@ -15,8 +15,6 @@ import { FaBars, FaUserShield } from "react-icons/fa";
 const Dashboard = () => {
   const [isAdmin] = useAdmin();
   const [isInstructor] = useInstructor();
-  console.log(isInstructor);
-  console.log(isAdmin);
 
   return (
     <div>

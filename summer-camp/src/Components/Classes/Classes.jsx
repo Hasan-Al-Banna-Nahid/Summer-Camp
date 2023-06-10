@@ -2,7 +2,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import useClasses from "../Hooks/useClasses";
 import { AuthContext } from "../Authorization/AuthProvider";
 import { Navigate, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -19,18 +18,23 @@ const Classes = () => {
   useEffect(() => {
     fetch("http://localhost:5000/instructorsClasses")
       .then((res) => res.json())
-      .then((data) => setClasses(datas));
+      .then((data) => setClasses(data));
   }, []);
+
   const sendDataToBackend = (classItem) => {
     const data = {
-      sport: classItem.sport,
+      sport: classItem.name,
       instructor: classItem.instructor,
-      availableSeats: classItem.availableSeats,
+      availableSeats: classItem.seats,
       price: classItem.price,
+      addedBy: user.email,
     };
-    fetch("http://localhost:5000/classes", {
+    fetch(`http://localhost:5000/classes?email=${user.email}`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-type": "application/json",
+        Authorization: localStorage.getItem("access-token"),
+      },
       body: JSON.stringify(data),
     })
       .then((res) => res.json())
@@ -72,7 +76,11 @@ const Classes = () => {
               className="card w-96 h-[450px] bg-base-100 shadow-xl"
             >
               <figure className="px-10 pt-10">
-                <img src={classItem.image} alt="Shoes" className="rounded-xl" />
+                <img
+                  src={classItem.image}
+                  alt={classItem.name}
+                  className="rounded-xl"
+                />
               </figure>
               <div className="card-body items-center text-center">
                 <h2 className="card-title">Sport : {classItem.name}</h2>

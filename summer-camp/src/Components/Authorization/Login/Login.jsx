@@ -71,14 +71,14 @@ const Login = () => {
       <div className="auth mx-auto">
         <h1 className="text-5xl font-bold text-center">Login now!</h1>
         <div className="hero min-h-screen ">
+          <div className="text-center bg-transparent lg:text-left">
+            <img
+              className="w-1/2"
+              src="assests/forms-concept-illustration/4967621.jpg"
+              alt=""
+            />
+          </div>
           <div className="hero-content flex-col lg:flex-row-reverse">
-            <div className="text-center bg-transparent lg:text-left">
-              <img
-                className="w-1/2"
-                src="assests/forms-concept-illustration/4967621.jpg"
-                alt=""
-              />
-            </div>
             <form
               onSubmit={handleLogin}
               className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100"
