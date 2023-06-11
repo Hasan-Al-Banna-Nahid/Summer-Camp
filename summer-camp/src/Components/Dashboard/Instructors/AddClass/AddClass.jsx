@@ -4,12 +4,15 @@ import { AuthContext } from "../../../Authorization/AuthProvider";
 import Swal from "sweetalert2";
 
 const AddClass = () => {
+  const imageToken = import.meta.env.VITE_Image_Token;
+  // console.log(imageToken);
+  const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${imageToken}`;
   const { user } = useContext(AuthContext);
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const form = e.target;
     const name = form.name.value;
-    const image = form.image.value;
     const instructor = form.instructor.value;
     const email = form.email.value;
     const status = form.status.value;
@@ -19,7 +22,6 @@ const AddClass = () => {
     const enrolled = parseInt(form.enrolled.value);
     const data = {
       name,
-      image,
       instructor,
       email,
       seats,
@@ -44,11 +46,19 @@ const AddClass = () => {
           timer: 1500,
         });
       });
+    const formData = new FormData();
+    formData.append("image", form.image[0]);
+    fetch(imageHostingUrl, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imgResponse) => {});
   };
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-6">
           <div>
             <h2 className="text-2xl">Class Name</h2>
             <input
@@ -61,10 +71,10 @@ const AddClass = () => {
           <div>
             <h2 className="text-2xl">Class Image</h2>
             <input
-              type="text"
+              type="file"
               name="image"
               placeholder="Type here"
-              className="input input-bordered w-full max-w-xs"
+              className="input btn btn-primary input-bordered w-full max-w-xs"
             />
           </div>
           <div>

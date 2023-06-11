@@ -10,23 +10,25 @@ const Instructors = () => {
     <div>
       <Header />
       <h2 className="text-3xl font-bold text-center">Instructors</h2>
-      <div className="grid md:grid-cols-3">
+      <div className="grid md:grid-cols-3 gap-6">
         {instructors.map((instructor, index) => {
           return (
             <div key={index} className="card w-96 h-96 bg-base-100 shadow-xl">
               <figure className="px-10 pt-10">
                 <img
                   src={instructor.image}
-                  alt="Shoes"
+                  alt={instructor.instructor}
                   className="rounded-xl"
                 />
               </figure>
               <div className="card-body items-center text-center">
-                <h2 className="card-title">{instructor.name}</h2>
-                <p>{instructor.email}</p>
-                <div className="card-actions">
-                  <button className="btn btn-primary">Buy Now</button>
-                </div>
+                <h2 className="card-title font-semibold">
+                  Name : {instructor.instructor}
+                </h2>
+                <p className="text-[18px] font-semibold">
+                  {" "}
+                  Email : {instructor.email}
+                </p>
               </div>
             </div>
           );

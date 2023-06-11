@@ -5,7 +5,6 @@ import { AuthContext } from "../../../Authorization/AuthProvider";
 
 const AllUsers = () => {
   const [users, setUsers] = useState([]);
-  const { user } = useContext(AuthContext);
 
   const handleInstructor = (user) => {
     fetch(`http://localhost:5000/users/instructor/${user._id}`, {

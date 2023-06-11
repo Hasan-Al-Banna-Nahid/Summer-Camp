@@ -1,10 +1,13 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
-import useInstructors from "../Hooks/useInstructors";
+import React, { useEffect, useState } from "react";
 
 const PopularInstructors = () => {
-  const [instructors] = useInstructors();
-  //   console.log(instructors);
+  const [instructors, setInstructors] = useState([]);
+  useEffect(() => {
+    fetch("Instructors.json")
+      .then((res) => res.json())
+      .then((data) => setInstructors(data));
+  }, []);
   return (
     <div>
       <h2 className="text-2xl text-center font-bold">Popular Instructors</h2>
