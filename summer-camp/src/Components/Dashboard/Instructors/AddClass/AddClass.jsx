@@ -122,7 +122,7 @@ const AddClass = () => {
               type="text"
               name="feedback"
               readOnly
-              value={""}
+              value={"No FeedBack Yet"}
               className="input input-bordered w-full max-w-xs"
             />
           </div>
@@ -132,7 +132,7 @@ const AddClass = () => {
               type="number"
               name="enrolled"
               readOnly
-              value={""}
+              value={0}
               className="input input-bordered w-full max-w-xs"
             />
           </div>

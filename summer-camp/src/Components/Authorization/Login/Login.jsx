@@ -120,7 +120,7 @@ const Login = () => {
                 </div>
                 <div className="divider">OR</div>
                 <button onClick={handleGoogleLogin}>
-                  <FaGoogle className="text-6xl text-center mx-auto hover:text-[#F4B400]" />
+                  <FaGoogle className="text-6xl text-slate-900 text-center mx-auto hover:text-[#F4B400]" />
                 </button>
                 <div className="form-control mt-6">
                   <Link to="/signUp">

@@ -19,7 +19,7 @@ const CheckoutForm = ({ cart, price }) => {
   useEffect(() => {
     if (price > 0) {
       axiosSecure.post("/create-payment-intent", { price }).then((res) => {
-        console.log(res.data.clientSecret);
+        // console.log(res.data.clientSecret);
         setClientSecret(res.data.clientSecret);
       });
     }
@@ -79,9 +79,8 @@ const CheckoutForm = ({ cart, price }) => {
         date: new Date(),
         quantity: cart.length,
         cartItems: cart.map((item) => item._id),
-        menuItems: cart.map((item) => item.menuItemId),
         status: "service pending",
-        itemNames: cart.map((item) => item.name),
+        itemNames: cart.map((item) => item.sport),
       };
       axiosSecure.post("/payments", payment).then((res) => {
         console.log(res.data);

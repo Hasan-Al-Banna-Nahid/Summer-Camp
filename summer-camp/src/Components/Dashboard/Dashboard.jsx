@@ -108,7 +108,7 @@ const Dashboard = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link>
+                  <Link to="enrolledClass">
                     <FaDoorOpen />
                     My Enrolled Classes
                   </Link>

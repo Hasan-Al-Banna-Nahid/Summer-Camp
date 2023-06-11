@@ -5,18 +5,19 @@ import Swal from "sweetalert2";
 import useUser from "../../../Hooks/useUser";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Authorization/AuthProvider";
+import useCart from "../../../Hooks/useCart";
 
 const MyClasses = () => {
-  const [classes, setClasses] = useState([]);
+  const [classes, refetch] = useCart();
   const { user } = useContext(AuthContext);
   console.log(classes);
   const price = classes.reduce((acc, obj) => obj.price + acc, 0);
 
-  useEffect(() => {
-    fetch(`http://localhost:5000/classes?email=${user.email}`)
-      .then((res) => res.json())
-      .then((data) => setClasses(data));
-  }, [user.email]);
+  // useEffect(() => {
+  //   fetch(`http://localhost:5000/classes?email=${user.email}`)
+  //     .then((res) => res.json())
+  //     .then((data) => setClasses(data));
+  // }, [user.email]);
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -31,8 +32,7 @@ const MyClasses = () => {
         fetch(`http://localhost:5000/classes/${id}`, { method: "DELETE" })
           .then((res) => res.json())
           .then((data) => {
-            const remaining = classes.filter((myClass) => myClass.id !== id);
-            setClasses(remaining);
+            refetch();
 
             Swal.fire("Deleted!", "Your file has been deleted.", "success");
           });
@@ -78,13 +78,16 @@ const MyClasses = () => {
                     <td className="text-lg text-center">
                       {classItem.availableSeats}
                     </td>
-                    <td className="text-lg text-center">{classItem?.price}</td>
+                    <td className="text-lg text-center">{classItem.price}</td>
                     <td>
                       <div className="flex gap-6">
                         <div>
                           {" "}
                           <button className=" text-slate-800 btn btn-outline btn-info">
-                            <Link to="/dashboard/payment"> Pay</Link>
+                            <Link to={`/dashboard/payment/${classItem._id}`}>
+                              {" "}
+                              Pay
+                            </Link>
                           </button>{" "}
                         </div>
                         <div>
