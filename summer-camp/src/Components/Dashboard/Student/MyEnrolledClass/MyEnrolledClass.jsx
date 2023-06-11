@@ -5,12 +5,8 @@ import usePayment from "../../../Hooks/usePayment";
 
 const MyEnrolledClass = () => {
   const [payments] = usePayment();
-  const { user } = useContext(AuthContext);
-  //   useEffect(() => {
-  //     fetch(`http://localhost:5000/payments?email=${user.email}`)
-  //       .then((res) => res.json())
-  //       .then((data) => setEnrolledClass(data));
-  //   }, [user.email]);
+  console.log(payments);
+
   return (
     <div>
       <div className="overflow-x-auto">
@@ -30,7 +26,7 @@ const MyEnrolledClass = () => {
                 return (
                   <tr key={enrolledClass._id}>
                     <th>{index + 1}</th>
-                    <th className="font-bold">{enrolledClass.sport}</th>
+                    <th className="font-bold">{enrolledClass.itemNames[0]}</th>
                     <td className="font-bold">{enrolledClass.email}</td>
                     <td className="font-bold">{enrolledClass.transactionId}</td>
                   </tr>

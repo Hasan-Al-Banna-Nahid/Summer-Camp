@@ -1,4 +1,7 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+import usePayment from "../../../Hooks/usePayment";
 
 const MyClass = () => {
   const [myClass, setMyClass] = useState([]);
@@ -7,6 +10,26 @@ const MyClass = () => {
       .then((res) => res.json())
       .then((data) => setMyClass(data));
   }, []);
+
+  const handleUpdated = (myClass) => {
+    fetch(`http://localhost:5000/instructorsClasses/${myClass._id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        Swal.fire("Good job!", "Class Updated!", "success");
+      });
+    fetch(`http://localhost:5000/instructorsClasses/${myClass._id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        Swal.fire("Good job!", "Class Updated!", "success");
+      });
+  };
   return (
     <div>
       <div>
@@ -26,6 +49,7 @@ const MyClass = () => {
                 <th className="text-[20px]">Instructor Email</th>
                 <th className="text-[20px]">Seats</th>
                 <th className="text-[20px]">Price</th>
+                <th className="text-[20px]">Enrolled</th>
                 <th className="text-[20px]">Status</th>
                 <th className="text-[20px]">Action</th>
               </tr>
@@ -54,11 +78,21 @@ const MyClass = () => {
                     <td className="text-[20px]">{myClass.email}</td>
                     <td className="text-[20px]">{myClass.seats}</td>
                     <td className="text-[20px]">{myClass.price}</td>
+                    <td className="text-[20px]">
+                      {/* {payments === true
+                        ? myClass.enrolled + 1
+                        : myClass.enrolled} */}
+                    </td>
                     <td className="badge badge-secondary badge-outline">
                       {myClass.status}
                     </td>
                     <th>
-                      <button className="btn btn-ghost btn-xs">Update</button>
+                      <button
+                        onClick={() => handleUpdated(myClass)}
+                        className="btn btn-ghost btn-xs"
+                      >
+                        Update
+                      </button>
                     </th>
                   </tr>
                 );

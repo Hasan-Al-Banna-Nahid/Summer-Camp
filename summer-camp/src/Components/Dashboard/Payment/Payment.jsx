@@ -7,14 +7,20 @@ import useCart from "../../Hooks/useCart";
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
 const Payment = () => {
   const [classes] = useCart();
-  const total = classes.reduce((sum, item) => sum + item.price, 0);
+  const singleClass = classes[0];
+  console.log(singleClass);
+  const total = singleClass ? singleClass.price : 0;
   const price = parseFloat(total.toFixed(2));
   return (
     <div>
       <h2 className="text-3xl"> Please Pay</h2>
-      <Elements stripe={stripePromise}>
-        <CheckoutForm cart={classes} price={price}></CheckoutForm>
-      </Elements>
+      {singleClass ? (
+        <Elements stripe={stripePromise}>
+          <CheckoutForm cart={[singleClass]} price={price} />
+        </Elements>
+      ) : (
+        <p>No class found.</p>
+      )}
     </div>
   );
 };

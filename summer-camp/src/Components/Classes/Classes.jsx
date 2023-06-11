@@ -3,16 +3,24 @@ import React, { useContext, useEffect, useState } from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { AuthContext } from "../Authorization/AuthProvider";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import useAdmin from "../Hooks/useAdmin";
+import useInstructor from "../Hooks/useInstructor";
+import usePaymentTransactionId from "../Hooks/usePaymentTransactionId";
 
 const MySwal = withReactContent(Swal);
 
 const Classes = () => {
   // const [classes] = useClasses();
   const navigate = useNavigate();
+  const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructor();
   const { user } = useContext(AuthContext);
+  // const { payment } = usePaymentTransactionId();
+  // console.log(payment);
+  // console.log(payments.map((payment) => payment.transactionId));
 
   const [classes, setClasses] = useState([]);
   useEffect(() => {
@@ -89,6 +97,12 @@ const Classes = () => {
                 </h2>
                 <p className="font-bold">Seats : {classItem.seats}</p>
                 <p className="font-bold">Price : ${classItem.price}</p>
+                <p className="font-bold">
+                  Enrolled Students : ${classItem.enrolled}
+                </p>
+                <p className="font-bold">
+                  Available Seats : ${classItem.seats}
+                </p>
                 <div className="card-actions">
                   <button
                     disabled={classItem.availableSeats === 0}

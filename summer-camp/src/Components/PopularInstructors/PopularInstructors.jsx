@@ -17,11 +17,8 @@ const PopularInstructors = () => {
                   <img src={instructor.image} className="rounded-xl" />
                 </figure>
                 <div className="card-body items-center text-center">
-                  <h2 className="card-title">{instructor.name}</h2>
-                  <p>{instructor.field}</p>
-                  <div className="card-actions">
-                    <button className="btn btn-primary">Buy Now</button>
-                  </div>
+                  <h2 className="card-title text-[28px]">{instructor.name}</h2>
+                  <p className="font-semibold">{instructor.field}</p>
                 </div>
               </div>
             </div>
