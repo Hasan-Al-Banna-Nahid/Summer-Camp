@@ -50,6 +50,7 @@ const MyClass = () => {
                 <th className="text-[20px]">Seats</th>
                 <th className="text-[20px]">Price</th>
                 <th className="text-[20px]">Enrolled</th>
+                <th className="text-[20px]">Feedback</th>
                 <th className="text-[20px]">Status</th>
                 <th className="text-[20px]">Action</th>
               </tr>
@@ -78,11 +79,8 @@ const MyClass = () => {
                     <td className="text-[20px]">{myClass.email}</td>
                     <td className="text-[20px]">{myClass.seats}</td>
                     <td className="text-[20px]">{myClass.price}</td>
-                    <td className="text-[20px]">
-                      {/* {payments === true
-                        ? myClass.enrolled + 1
-                        : myClass.enrolled} */}
-                    </td>
+                    <td className="text-[20px]">{myClass.enrolled}</td>
+                    <td className="text-[20px]">{myClass.feedback}</td>
                     <td className="badge badge-secondary badge-outline">
                       {myClass.status}
                     </td>

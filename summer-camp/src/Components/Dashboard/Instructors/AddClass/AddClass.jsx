@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../Authorization/AuthProvider";
 import Swal from "sweetalert2";
 
@@ -8,6 +8,7 @@ const AddClass = () => {
   console.log(imageToken);
   const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${imageToken}`;
   const { user } = useContext(AuthContext);
+  const [displayUrl, setDisplayUrl] = useState([]);
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -29,6 +30,7 @@ const AddClass = () => {
       status,
       feedback,
       enrolled,
+      image: displayUrl,
     };
     fetch("http://localhost:5000/instructorsClasses", {
       method: "POST",
@@ -54,7 +56,10 @@ const AddClass = () => {
       body: formData,
     })
       .then((res) => res.json())
-      .then((imgResponse) => {});
+      .then((imgResponse) => {
+        const url = imgResponse.data.display_url;
+        setDisplayUrl(url);
+      });
   };
   return (
     <div>
@@ -67,6 +72,7 @@ const AddClass = () => {
               name="name"
               placeholder="Type here"
               className="input input-bordered w-full max-w-xs"
+              required
             />
           </div>
           <div>
@@ -75,6 +81,7 @@ const AddClass = () => {
               type="file"
               name="image"
               placeholder="Type here"
+              required
               className="input btn btn-primary input-bordered w-full max-w-xs"
             />
           </div>
@@ -104,6 +111,7 @@ const AddClass = () => {
             <input
               type="number"
               name="seats"
+              required
               placeholder="Type here"
               className="input input-bordered w-full max-w-xs"
             />
@@ -113,6 +121,7 @@ const AddClass = () => {
             <input
               type="number"
               name="price"
+              required
               placeholder="Type here"
               className="input input-bordered w-full max-w-xs"
             />
