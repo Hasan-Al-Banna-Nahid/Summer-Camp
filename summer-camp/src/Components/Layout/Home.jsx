@@ -5,6 +5,7 @@ import Footer from "../Footer/Footer";
 import Banner from "../Banner/Banner";
 import PopularClasses from "../PopularClasses/PopularClasses";
 import PopularInstructors from "../PopularInstructors/PopularInstructors";
+import OurFeatures from "../OurFeatures/OurFeatures";
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <Banner />
       <PopularClasses />
       <PopularInstructors />
+      <OurFeatures />
       <Footer />
     </div>
   );

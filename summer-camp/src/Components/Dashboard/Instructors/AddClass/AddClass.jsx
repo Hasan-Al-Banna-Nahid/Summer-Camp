@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 
 const AddClass = () => {
   const imageToken = import.meta.env.VITE_Image_Token;
-  // console.log(imageToken);
+  console.log(imageToken);
   const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${imageToken}`;
   const { user } = useContext(AuthContext);
   const handleSubmit = (e) => {
@@ -47,7 +47,8 @@ const AddClass = () => {
         });
       });
     const formData = new FormData();
-    formData.append("image", form.image[0]);
+    formData.append("image", form.image.files[0]);
+    console.log(form.image.files);
     fetch(imageHostingUrl, {
       method: "POST",
       body: formData,
