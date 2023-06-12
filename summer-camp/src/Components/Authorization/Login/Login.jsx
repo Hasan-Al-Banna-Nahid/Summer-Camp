@@ -22,7 +22,7 @@ const Login = () => {
   const { accessLogin, googleLogin } = useContext(AuthContext);
   const handleGoogleLogin = () => {
     googleLogin().then((result) => {
-      fetch("http://localhost:5000/users", {
+      fetch("https://vedhak-iamnahid591998-gmailcom.vercel.app/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -45,7 +45,7 @@ const Login = () => {
         console.log(result.user);
         Swal.fire("Good job!", "Login Success!", "success");
         navigate(from, { replace: true });
-        fetch("http://localhost:5000/users", {
+        fetch("https://vedhak-iamnahid591998-gmailcom.vercel.app/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

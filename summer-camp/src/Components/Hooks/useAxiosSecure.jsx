@@ -8,7 +8,7 @@ const useAxiosSecure = () => {
   const navigate = useNavigate();
 
   const axiosSecure = axios.create({
-    baseURL: "http://localhost:5000",
+    baseURL: "https://vedhak-iamnahid591998-gmailcom.vercel.app",
   });
 
   useEffect(() => {

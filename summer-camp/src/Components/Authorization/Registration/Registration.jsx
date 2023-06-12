@@ -30,7 +30,7 @@ const Registration = () => {
 
   const handleGoogleLogin = () => {
     googleLogin().then((result) => {
-      fetch("http://localhost:5000/users", {
+      fetch("https://vedhak-iamnahid591998-gmailcom.vercel.app/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -59,7 +59,7 @@ const Registration = () => {
       MySwal.fire("Good job!", "You Account Is Created!", "success");
       reset();
       navigate("/login");
-      fetch("http://localhost:5000/users", {
+      fetch("https://vedhak-iamnahid591998-gmailcom.vercel.app/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

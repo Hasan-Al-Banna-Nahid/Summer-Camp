@@ -14,7 +14,7 @@ const MyClasses = () => {
   const price = classes.reduce((acc, obj) => obj.price + acc, 0);
 
   // useEffect(() => {
-  //   fetch(`http://localhost:5000/classes?email=${user.email}`)
+  //   fetch(`https://vedhak-iamnahid591998-gmailcom.vercel.app/classes?email=${user.email}`)
   //     .then((res) => res.json())
   //     .then((data) => setClasses(data));
   // }, [user.email]);
@@ -29,7 +29,10 @@ const MyClasses = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/classes/${id}`, { method: "DELETE" })
+        fetch(
+          `https://vedhak-iamnahid591998-gmailcom.vercel.app/classes/${id}`,
+          { method: "DELETE" }
+        )
           .then((res) => res.json())
           .then((data) => {
             refetch();

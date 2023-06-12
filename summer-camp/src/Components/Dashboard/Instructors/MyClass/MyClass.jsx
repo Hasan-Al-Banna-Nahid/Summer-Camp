@@ -6,25 +6,33 @@ import usePayment from "../../../Hooks/usePayment";
 const MyClass = () => {
   const [myClass, setMyClass] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/instructorsClasses")
+    fetch(
+      "https://vedhak-iamnahid591998-gmailcom.vercel.app/instructorsClasses"
+    )
       .then((res) => res.json())
       .then((data) => setMyClass(data));
   }, []);
 
   const handleUpdated = (myClass) => {
-    fetch(`http://localhost:5000/instructorsClasses/${myClass._id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(),
-    })
+    fetch(
+      `https://vedhak-iamnahid591998-gmailcom.vercel.app/instructorsClasses/${myClass._id}`,
+      {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         Swal.fire("Good job!", "Class Updated!", "success");
       });
-    fetch(`http://localhost:5000/instructorsClasses/${myClass._id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-    })
+    fetch(
+      `https://vedhak-iamnahid591998-gmailcom.vercel.app/instructorsClasses/${myClass._id}`,
+      {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         Swal.fire("Good job!", "Class Updated!", "success");

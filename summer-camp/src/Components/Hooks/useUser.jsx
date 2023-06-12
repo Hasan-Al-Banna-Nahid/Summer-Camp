@@ -8,7 +8,9 @@ const useUser = () => {
   const { refetch, data: users = [] } = useQuery({
     queryKey: ["classes"],
     queryFn: () =>
-      fetch(`http://localhost:5000/classes`).then((res) => res.json()),
+      fetch(`https://vedhak-iamnahid591998-gmailcom.vercel.app/classes`).then(
+        (res) => res.json()
+      ),
   });
   return [refetch, users];
 };

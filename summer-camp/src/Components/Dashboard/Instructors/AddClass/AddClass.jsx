@@ -32,11 +32,14 @@ const AddClass = () => {
       enrolled,
       image: displayUrl,
     };
-    fetch("http://localhost:5000/instructorsClasses", {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(data),
-    })
+    fetch(
+      "https://vedhak-iamnahid591998-gmailcom.vercel.app/instructorsClasses",
+      {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(data),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         form.reset();

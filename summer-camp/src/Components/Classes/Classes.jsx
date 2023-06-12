@@ -24,7 +24,9 @@ const Classes = () => {
 
   const [classes, setClasses] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/instructorsClasses")
+    fetch(
+      "https://vedhak-iamnahid591998-gmailcom.vercel.app/instructorsClasses"
+    )
       .then((res) => res.json())
       .then((data) => setClasses(data));
   }, []);
@@ -37,14 +39,17 @@ const Classes = () => {
       price: classItem.price,
       addedBy: user.email,
     };
-    fetch(`http://localhost:5000/classes?email=${user.email}`, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: localStorage.getItem("access-token"),
-      },
-      body: JSON.stringify(data),
-    })
+    fetch(
+      `https://vedhak-iamnahid591998-gmailcom.vercel.app/classes?email=${user.email}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: localStorage.getItem("access-token"),
+        },
+        body: JSON.stringify(data),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         Swal.fire({

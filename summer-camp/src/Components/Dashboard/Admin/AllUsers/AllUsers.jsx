@@ -7,9 +7,12 @@ const AllUsers = () => {
   const [users, setUsers] = useState([]);
 
   const handleInstructor = (user) => {
-    fetch(`http://localhost:5000/users/instructor/${user._id}`, {
-      method: "PATCH",
-    })
+    fetch(
+      `https://vedhak-iamnahid591998-gmailcom.vercel.app/users/instructor/${user._id}`,
+      {
+        method: "PATCH",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -23,7 +26,10 @@ const AllUsers = () => {
       });
   };
   const handleAdmin = (user) => {
-    fetch(`http://localhost:5000/users/admin/${user._id}`, { method: "PATCH" })
+    fetch(
+      `https://vedhak-iamnahid591998-gmailcom.vercel.app/users/admin/${user._id}`,
+      { method: "PATCH" }
+    )
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
@@ -38,7 +44,7 @@ const AllUsers = () => {
   };
   console.log(users);
   useEffect(() => {
-    fetch("http://localhost:5000/users")
+    fetch("https://vedhak-iamnahid591998-gmailcom.vercel.app/users")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

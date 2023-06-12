@@ -19,10 +19,13 @@ const ManageClass = () => {
     const form = e.target;
     const feedback = form.feedback.value;
     console.log(id);
-    fetch(`http://localhost:5000/instructorsClasses/${id}`, {
-      method: "PATCH",
-      body: JSON.stringify(feedback),
-    })
+    fetch(
+      `https://vedhak-iamnahid591998-gmailcom.vercel.app/instructorsClasses/${id}`,
+      {
+        method: "PATCH",
+        body: JSON.stringify(feedback),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         form.reset();
@@ -37,7 +40,10 @@ const ManageClass = () => {
       });
   };
   const handleDeny = (id) => {
-    fetch(`http://localhost:5000/instructorsClasses/${id}`, { method: "PATCH" })
+    fetch(
+      `https://vedhak-iamnahid591998-gmailcom.vercel.app/instructorsClasses/${id}`,
+      { method: "PATCH" }
+    )
       .then((res) => res.json())
       .then((data) => {
         Swal.fire({
@@ -50,7 +56,10 @@ const ManageClass = () => {
       });
   };
   const handleApproved = (id) => {
-    fetch(`http://localhost:5000/instructorsClasses/${id}`, { method: "PATCH" })
+    fetch(
+      `https://vedhak-iamnahid591998-gmailcom.vercel.app/instructorsClasses/${id}`,
+      { method: "PATCH" }
+    )
       .then((res) => res.json())
       .then((data) => {
         Swal.fire({
@@ -63,7 +72,9 @@ const ManageClass = () => {
       });
   };
   useEffect(() => {
-    fetch("http://localhost:5000/instructorsClasses")
+    fetch(
+      "https://vedhak-iamnahid591998-gmailcom.vercel.app/instructorsClasses"
+    )
       .then((res) => res.json())
       .then((data) => setMyClass(data));
   }, []);
