@@ -6,16 +6,16 @@ import "./Header.css";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const handleToggle = () => {
-    setIsDarkMode((prevMode) => !prevMode);
-  };
-  const darkMode = () => {
-    document.body.style.backgroundColor = "#2c3e50";
-  };
-  const lightMode = () => {
-    document.body.style.backgroundColor = "#ECF0F3";
-  };
+  // const [isDarkMode, setIsDarkMode] = useState(false);
+  // const handleToggle = () => {
+  //   setIsDarkMode((prevMode) => !prevMode);
+  // };
+  // const darkMode = () => {
+  //   document.body.style.backgroundColor = "#2c3e50";
+  // };
+  // const lightMode = () => {
+  //   document.body.style.backgroundColor = "#ECF0F3";
+  // };
   const handleLogOut = () => {
     logOut();
   };
@@ -81,13 +81,13 @@ const Header = () => {
             </li>
           </ul>
         </div>
-        <div onClick={handleToggle}>
+        {/* <div onClick={handleToggle}>
           {!isDarkMode ? (
             <FaToggleOff className="toggleOff text-2xl" onClick={darkMode} />
           ) : (
             <FaToggleOn className="toggleOn text-2xl" onClick={lightMode} />
           )}
-        </div>
+        </div> */}
         <div className="navbar-end">
           {user && user ? (
             <div className="flex">

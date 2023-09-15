@@ -4,7 +4,7 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Banner from "../Banner/Banner";
 import PopularClasses from "../PopularClasses/PopularClasses";
-import PopularInstructors from "../PopularInstructors/PopularInstructors";
+// import PopularInstructors from "../PopularInstructors/PopularInstructors";
 import OurFeatures from "../OurFeatures/OurFeatures";
 
 const Home = () => {
@@ -13,7 +13,7 @@ const Home = () => {
       <Header />
       <Banner />
       <PopularClasses />
-      <PopularInstructors />
+      {/* <PopularInstructors /> */}
       <OurFeatures />
       <Footer />
     </div>

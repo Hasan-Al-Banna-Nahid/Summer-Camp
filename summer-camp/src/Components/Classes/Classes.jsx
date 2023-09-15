@@ -90,7 +90,9 @@ const Classes = () => {
             >
               <figure className="px-10 pt-10">
                 <img
-                  src={classItem.image}
+                  src={
+                    "/assests/male_soccer_football_player_training_action_isolated_gradient_studio_neon_light.jpg"
+                  }
                   alt={classItem.name}
                   className="rounded-xl"
                 />

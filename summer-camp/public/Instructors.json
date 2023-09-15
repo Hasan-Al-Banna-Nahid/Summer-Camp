@@ -1,37 +1,37 @@
 [
   {
     "name": "John Doe",
-    "image": "assests/Instructors/cricketer-field-batting-position.jpg",
+    "image": "/assests/New folder/jhon_doe_IMqC7Ihs_ozILbKhs-6IaPbKhs.jpg",
     "field": "Cricket Coach",
     "email": "john.doe@example.com"
   },
   {
     "name": "Jane Smith",
-    "image": "assests/Instructors/front-view-man-with-racket-before-squash-game.jpg",
+    "image": "/assests/New folder/jane_smith_3uqC7Ihs_LnILbKhs-KwaPbKhs.jpg",
     "field": "Tenis Coach",
     "email": "jane.smith@example.com"
   },
   {
     "name": "Alex Johnson",
-    "image": "assests/Instructors/medium-shot-man-holding-ball.jpg",
+    "image": "/assests/New folder/alex_jhonson_fOpC7Ihs_wtJLbKhs-hTZObKhs.jpg",
     "field": "FootBall Coach",
     "email": "alex.johnson@example.com"
   },
   {
     "name": "Sarah Davis",
-    "image": "assests/Instructors/portrait-afro-american-sportsman-basketball-player-sportswear-with-ball-dark-background.jpg",
+    "image": "/assests/New folder/sarah_davis_PvqC7Ihs_R7KLbKhs-8HaPbKhs.jpg",
     "field": "BasketBall Coach",
     "email": "sarah.davis@example.com"
   },
   {
     "name": "Michael Brown",
-    "image": "assests/Instructors/swimmer-coach-discussing-by-pool-european-ethnicity-leisure-center.jpg",
+    "image": "/assests/New folder/michel_brown_iEpC7Ihs_MtILbKhs-4LaPbKhs.jpg",
     "field": "Swimming Coach",
     "email": "michael.brown@example.com"
   },
   {
     "name": "Emily Wilson",
-    "image": "assests/Instructors/young-volleyball-man-player-court.jpg",
+    "image": "/assests/New folder/emily_wilson_p6uC7Ihs_LfKLbKhs-2TZObKhs.jpg",
     "field": "VolleyBall Coach",
     "email": "emily.wilson@example.com"
   }
